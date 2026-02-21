@@ -6,6 +6,8 @@ A sample application demonstrating GTK4 integration with .NET, built and package
 
 This project showcases how to create a GTK4 graphical user interface using .NET and C#. The application is designed as a learning example and does **not follow any specific architectural/design pattern** - it serves as a straightforward demonstration of GTK4 and .NET interoperability.
 
+![alt text](image.png)
+
 ## Requirements
 
 - **.NET 10.0** (or later)
