@@ -1,0 +1,96 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Gtk4DotNetSample.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish linux-x64",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/ui/Gtk4DotNetSample.csproj",
+                "-c", "Release",
+                "-r", "linux-x64",
+                "--self-contained",
+                "-p:UseAppHost=true",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Gtk4DotNetSample.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish flatpak to local repo",
+            "command": "flatpak-builder",
+            "type": "process",
+            "args": [
+                "--force-clean", 
+                "--user",
+                "--install-deps-from=flathub",
+                "--repo=repo", 
+                "builddir", 
+                "--disable-rofiles-fuse", 
+                "${workspaceFolder}/com.antevere.Gtk4DotNetSample.yml"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build .flatpak file",
+            "command": "flatpak",
+            "type": "process",
+            "args": [
+                "build-bundle", 
+                "repo", 
+                "dist/com.antevere.Gtk4DotNetSample.flatpak",
+                "com.antevere.Gtk4DotNetSample",
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run from flatpack repo",
+            "command": "flatpak-builder",
+            "type": "process",
+            "args": [
+                "--run",
+                "builddir",
+                "com.antevere.Gtk4DotNetSample.yml",
+                "Gtk4DotNetSample"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Gtk4DotNetSample.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

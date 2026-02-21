@@ -1,0 +1,29 @@
+{
+	"name": "C# (.NET)",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "../"
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker": {
+			
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit",
+				"ms-dotnettools.vscode-dotnet-runtime",
+				"patcx.vscode-nuget-gallery",
+				"bilelmoussaoui.flatpak-vscode",
+				"ms-vscode.vs-keybindings"
+			]
+		}
+	},
+	"runArgs": [
+		"--privileged"		
+	],
+	"containerUser": "vscode",
+	"postCreateCommand": "flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak install -y flathub org.gnome.Sdk//49 org.gnome.Platform//49"
+}

@@ -1,0 +1,29 @@
+id: com.antevere.Gtk4DotNetSample
+runtime: org.gnome.Platform
+runtime-version: '49'
+sdk: org.gnome.Sdk
+command: Gtk4DotNetSample
+finish-args:
+  - --socket=wayland
+  - --socket=x11
+  - --device=dri
+  - --share=ipc
+  - --socket=session-bus
+  - --talk-name=org.freedesktop.portal.Desktop
+  - --env=GTK_USE_PORTAL=1
+modules:
+  - name: Gtk4DotNetSample
+    buildsystem: simple
+    sources:
+      - type: dir
+        path: ui/bin/Release/net10.0/linux-x64/publish
+      - type: file
+        path: packaging/com.antevere.Gtk4DotNetSample.desktop
+      - type: file
+        path: packaging/icons/com.antevere.Gtk4DotNetSample.svg
+    build-commands:
+      - install -d /app/lib/Gtk4DotNetSample # creates folder for dlls
+      - cp -r . /app/bin # copy the dlls
+      - install -Dm755 Gtk4DotNetSample /app/bin/Gtk4DotNetSample # copy and assign execute permission to entrypoint
+      - install -Dm644 com.antevere.Gtk4DotNetSample.desktop /app/share/applications/com.antevere.Gtk4DotNetSample.desktop
+      - install -Dm644 com.antevere.Gtk4DotNetSample.svg /app/share/icons/hicolor/scalable/apps/com.antevere.Gtk4DotNetSample.svg

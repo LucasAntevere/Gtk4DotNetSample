@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Gtk4DotNetSample
+Comment=GTK4 app built with .NET
+Exec=Gtk4DotNetSample
+Icon=com.antevere.Gtk4DotNetSample
+Terminal=false
+Categories=Utility;GTK;
+StartupNotify=true
